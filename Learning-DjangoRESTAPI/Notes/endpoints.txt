@@ -1,0 +1,9 @@
+
+
+# http://localhost:8000/studentapi/
+
+# for post request:
+{"name": "Ohit", "roll": 16, "city": "Ranchi"}
+
+# for put request:
+{"id": "1", "roll": 27, "city": "Lahore"}

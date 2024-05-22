@@ -1,0 +1,14 @@
+https://www.django-rest-framework.org/tutorial/1-serialization/
+
+
+Django REST Framework:
+https://www.youtube.com/playlist?list=PLbGui_ZYuhijTKyrlu-0g5GcP9nUp_HlN 
+
+
+https://github.com/PAWAR-AKSHAY/Django-Rest-Framework-Study-Material
+
+
+https://github.com/ManishShah120/Learning-DjangoRESTAPI ************
+
+https://github.com/minhaz-engg/GeekyShowsRESTAPI
+

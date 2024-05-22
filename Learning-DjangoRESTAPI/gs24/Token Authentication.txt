@@ -1,0 +1,186 @@
+https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication
+
+Generating Tokens:
+
+1) Include rest_framework.authtoken in your INSTALLED_APPS setting:
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework.authtoken'
+]
+Make sure to run `python manage.py migrate` after changing your settings.
+
+The rest_framework.authtoken app provides Django database migrations.
+It also add `tokens` table in admin panel.
+
+2) python manage.py createsuperuser
+
+username: admin
+pass: admin
+
+
+3) Now we can generate tokens for users. There are multiple ways to generate tokens for users:
+
+A) We can generate token for specific user from admin panel 
+
+******************************************************************************************************************
+
+B) We can generate token from CLI using this command:
+
+    $ python manage.py drf_create_token <username>
+
+    $ python manage.py drf_create_token admin
+
+    If token is generated already, it return that token otherwise create new token.
+
+******************************************************************************************************************
+C) Exposing an API endpoint:
+
+C1) We can generate token by exposing an API endpoint (see gs25)
+
+REST framework provides a built-in view to provide this behavior. 
+
+i) To use it, add the `obtain_auth_token` view to your URLconf:
+
+from rest_framework.authtoken import views
+
+urlpatterns += [
+    path("gettoken/", views.obtain_auth_token),
+]
+
+Note that the URL part of the pattern can be whatever you want to use.
+
+ii) we can generate token from this endpoint using the httpie package:
+
+$ pipenv install httpie
+
+Now we can generate token by:
+
+$ http POST http://localhost:8000/gettoken/ username="admin" password="admin" 
+
+{
+    "token": "d95a9a8cd73d678edd0d4d900b7f3c0fa85b75a4"
+}
+
+*************************************
+
+C2) Customized obtain_auth_token view (see gs26)
+
+If you need a customized version of the obtain_auth_token view, you can do so by subclassing the ObtainAuthToken view class,
+ and using that in your url conf instead.
+
+For example, you may return additional user information beyond the token value:
+
+i) 
+# gs26/api/auth.py
+
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(
+            data=request.data, context={"request": request}
+        )
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({"token": token.key, "user_id": user.pk, "email": user.email})
+
+
+ii) And in your urls.py:
+
+from api.auth import CustomAuthToken
+
+path("gettoken/", CustomAuthToken.as_view()),
+
+iii) Now we can generate token by:
+
+$ http POST http://localhost:8000/gettoken/ username="admin" password="admin" 
+
+{
+    "email": "admin@gmail.com",
+    "token": "17915822d8478802525ad9241ce1d05e678fe449",
+    "user_id": 1
+}
+
+Or By Using Postman:
+
+http://localhost:8000/gettoken/
+
+body: 
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+******************************************************************************************************************
+
+D) We can generate token using signals (see gs27):
+
+If you want every new user to have an automatically generated Token, you can simply catch the User's `post_save` signal.
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
+
+Note that you'll want to ensure you place this code snippet in an installed models.py module,
+ or some other location that will be imported by Django on startup.
+
+*************************************
+If you've already created some users, you can generate tokens for all existing users like this:
+
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
+for user in User.objects.all():
+    Token.objects.get_or_create(user=user)
+
+******************************************************************************************************************
+
+Using Token for CRUD (see gs28):
+
+Now to use tokenauthentication for CRUD 
+We will use httpie for request, we can use postman or any client.
+Token will be created automatically when user created (using post_save signal)
+
+Here are the `httpie` commands for CRUD:
+
+
+#### GET Request
+```sh
+http http://127.0.0.1:8000/studentapi/
+```
+
+#### GET Request with Auth
+```sh
+http http://127.0.0.1:8000/studentapi/ 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
+http http://127.0.0.1:8000/studentapi/1/ 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
+```
+
+#### POST Request / Submitting Form
+```sh
+http -f POST http://127.0.0.1:8000/studentapi/ name=Nouman roll=104 city=Lahore 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
+```
+-f is for form submission
+
+#### PUT Request
+```sh
+http PUT http://127.0.0.1:8000/studentapi/1/ name=Nomi roll=109 city=Lahore 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
+```
+
+#### DELETE Request
+```sh
+http DELETE http://127.0.0.1:8000/studentapi/1/ 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
+```

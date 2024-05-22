@@ -1,0 +1,24 @@
+
+
+pipenv shell
+cd gs1
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+
+*******************************
+
+username: admin
+password: admin
+email: admin@example.com
+
+*******************************
+
+Test api:
+pipenv shell
+python gs1/myapp.py
+
+*******************************
+
+

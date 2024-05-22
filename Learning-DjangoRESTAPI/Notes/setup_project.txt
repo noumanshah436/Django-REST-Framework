@@ -1,0 +1,7 @@
+1) create ".venv" director,
+2) pipenv install             --  will create Pipfile and lock file and create virtual environment
+3) pipenv install django      -- install package
+4) pipenv shell		
+
+pipenv install djangorestframework
+pipenv install requests

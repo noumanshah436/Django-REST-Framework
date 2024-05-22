@@ -1,0 +1,36 @@
+$ python --version
+Python 3.12.3
+
+$ python -m venv venv
+
+$ source venv/bin/activate
+
+$ pip install -r requirements.txt 
+
+$ pip install --upgrade pip
+
+
+$ mkdir backend 
+$ cd backend
+$ django-admin startproject cfehome .
+
+$ python manage.py startapp api
+
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+********************************************
+
+$ python manage.py createsuperuser
+
+Username: nouman
+Email address: nouman@gmail.com
+Password: nouman
+
+
+Staff user:
+Username: staff
+Email address: staff@gmail.com
+Password: noumanrehman042
+
+********************************************
