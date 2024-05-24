@@ -123,6 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # TO change the keyword `search=` in the url bar
-REST_FRAMEWORK = {
-    'SEARCH_PARAM': 'q'
-}
+# REST_FRAMEWORK = {
+#     'SEARCH_PARAM': 'q'
+# }

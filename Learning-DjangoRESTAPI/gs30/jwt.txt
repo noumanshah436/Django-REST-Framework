@@ -1,0 +1,83 @@
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+
+
+1) pipenv install djangorestframework-simplejwt
+
+2)  In urls.py file:
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+) 
+urlpatterns = [
+    ...,
+    path("gettoken/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("refreshtoken/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("verifytoken/", TokenVerifyView.as_view(), name="token_verify"),
+]
+
+
+4) How to generate, verify or refresh token?
+
+i) Generate token:
+
+$ http POST http://127.0.0.1:8000/gettoken/ username=admin password=admin
+
+{
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDc1MDc4LCJpYXQiOjE3MTY0NzQ3NzgsImp0aSI6IjRmODQ5YjU3MDllYjQ3MDA5YjEwODI5Y2QyMDc3MGU2IiwidXNlcl9pZCI6MX0.Z8bq21tXeEHidsNPeWVoMRrzYiLRsBjHZhgv3d8P_1I",
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNjU2MTE3OCwiaWF0IjoxNzE2NDc0Nzc4LCJqdGkiOiIxNDRkMmJiZTAxZjU0Yzk5OGM0Y2Y2ZjBmYTMwZTI0OSIsInVzZXJfaWQiOjF9.6dA2LJ1KXzlQeHBnYG2ggiQkJP-_fVCO8AiAdm4C-9I"
+}
+
+
+This access token will be expired in 5 min, Now we can refresh token using this refresh token or create another token.
+Refresh token will be expired in one day (meaning that we can use this refresh token upto 1 day to generate new access token).
+
+ii) Varify token:
+
+$ http POST http://127.0.0.1:8000/verifytoken/ token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDc1MDc4LCJpYXQiOjE3MTY0NzQ3NzgsImp0aSI6IjRmODQ5YjU3MDllYjQ3MDA5YjEwODI5Y2QyMDc3MGU2IiwidXNlcl9pZCI6MX0.Z8bq21tXeEHidsNPeWVoMRrzYiLRsBjHZhgv3d8P_1I"
+
+this will give 200 OK response, if token is valid.
+
+iii) Refresh token:
+
+http POST http://127.0.0.1:8000/refreshtoken/ refresh="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNjU2MTE3OCwiaWF0IjoxNzE2NDc0Nzc4LCJqdGkiOiIxNDRkMmJiZTAxZjU0Yzk5OGM0Y2Y2ZjBmYTMwZTI0OSIsInVzZXJfaWQiOjF9.6dA2LJ1KXzlQeHBnYG2ggiQkJP-_fVCO8AiAdm4C-9I"
+
+this will return new access token
+
+{
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDc1NzUxLCJpYXQiOjE3MTY0NzQ3NzgsImp0aSI6ImY2NjlkNWFmMTk4ZjQzMmJiYWRkYzBlMGE5NWQzYmFlIiwidXNlcl9pZCI6MX0.hAOrvhdOmn7mocnZu8OyakYC-h7cbH_9DjGNXYl_hKM"
+}
+
+
+5) Access API's using access token:
+
+Here are the `httpie` commands for CRUD:
+
+
+#### GET Request
+```sh
+http http://127.0.0.1:8000/studentapi/ "Authorization: Bearer your_access_token"
+```
+
+#### GET Request with Auth
+```sh
+http http://127.0.0.1:8000/studentapi/ 'Authorization: Bearer your_access_token'
+http http://127.0.0.1:8000/studentapi/1/ 'Authorization: Bearer your_access_token'
+```
+
+#### POST Request / Submitting Form
+```sh
+http -f POST http://127.0.0.1:8000/studentapi/ name=Nouman roll=104 city=Lahore 'Authorization: Bearer your_access_token'
+```
+-f is for form submission
+
+#### PUT Request
+```sh
+http PUT http://127.0.0.1:8000/studentapi/1/ name=Nomi roll=109 city=Lahore 'Authorization: Bearer your_access_token'
+```
+
+#### DELETE Request
+```sh
+http DELETE http://127.0.0.1:8000/studentapi/1/ 'Authorization: Bearer your_access_token'
+```

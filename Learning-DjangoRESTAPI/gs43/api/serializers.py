@@ -1,4 +1,4 @@
-from django.db.models import fields
+# from django.db.models import fields
 from rest_framework.fields import ReadOnlyField
 from .models import Singer, Song
 from rest_framework import serializers
@@ -7,8 +7,7 @@ from rest_framework import serializers
 class SongSerializer(serializers.ModelSerializer):
     class Meta:
         model = Song
-        fields = ['id', 'title', 'singer', 'duration']
-
+        fields = ["id", "title", "singer", "duration"]
 
 
 class SingerSerializer(serializers.ModelSerializer):
@@ -16,4 +15,7 @@ class SingerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Singer
-        fields = ['id', 'name', 'gender', 'sungby']
+        fields = ["id", "name", "gender", "sungby"]
+
+
+# here we are nesting songs data, with singers data

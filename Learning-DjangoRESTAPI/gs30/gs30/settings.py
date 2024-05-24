@@ -132,5 +132,5 @@ STATIC_URL = '/static/'
 # For changing the TIME of expiration from 5 min to more or less
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
-#     'ROTATE_REFRESH_TOKENS': False # This will generate access token and refresh token both at the the time of refresh command
+#     'ROTATE_REFRESH_TOKENS': False # This will generate both access token and refresh token at the the time of refresh command
 # }

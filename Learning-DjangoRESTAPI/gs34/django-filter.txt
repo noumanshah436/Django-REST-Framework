@@ -1,0 +1,53 @@
+DjangoFilterBackend:
+
+
+The django-filter library includes a DjangoFilterBackend class which supports highly customizable field filtering for REST framework.
+
+1) To use DjangoFilterBackend, first install django-filter.
+
+pip install django-filter
+
+
+2) Then add 'django_filters' to Django's INSTALLED_APPS:
+
+INSTALLED_APPS = [
+    ...
+    'django_filters',
+    ...
+]
+
+3) 
+
+i) You should now either add the filter backend to your settings:
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+
+ii) Or add the filter backend to an individual View or ViewSet.
+
+from django_filters.rest_framework import DjangoFilterBackend
+
+class UserListView(generics.ListAPIView):
+    ...
+    filter_backends = [DjangoFilterBackend]
+
+
+If all you need is simple equality-based filtering, you can set a filterset_fields attribute on the view, or viewset, listing the set of fields you wish to filter against.
+
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'in_stock']
+
+
+This will automatically create a FilterSet class for the given fields, and will allow you to make requests such as:
+
+http://example.com/api/products?category=clothing&in_stock=True
+
+
+For more advanced filtering requirements you can specify a FilterSet class that should be used by the view.
+ You can read more about FilterSets in the django-filter documentation. It's also recommended that you read the section on DRF integration.
+

@@ -1,0 +1,8 @@
+using browser:
+http://localhost:8000/studentapi/?username=admin
+
+************************
+
+using httpie:
+http http://127.0.0.1:8000/studentapi/?username=admin
+http -f POST http://127.0.0.1:8000/studentapi/?username=admin name=Shah roll=104 city=Lahore

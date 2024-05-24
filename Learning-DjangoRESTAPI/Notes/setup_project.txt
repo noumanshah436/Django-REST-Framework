@@ -5,3 +5,7 @@
 
 pipenv install djangorestframework
 pipenv install requests
+pipenv install httpie
+
+pipenv install django-filter
+pipenv install faker

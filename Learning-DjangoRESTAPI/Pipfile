@@ -8,6 +8,9 @@ django = "*"
 djangorestframework = "*"
 requests = "*"
 httpie = "*"
+djangorestframework-simplejwt = "*"
+django-filter = "*"
+faker = "*"
 
 [dev-packages]
 
