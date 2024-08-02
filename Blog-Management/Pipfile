@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+requests = "*"
+httpie = "*"
+djangorestframework-simplejwt = "*"
+django-filter = "*"
+faker = "*"
+django-import-export = "*"
+pillow = "*"
+pyjwt = "*"
+django-cors-headers = "*"
+graphviz = "*"
+django-extensions = "*"
+pygraphviz = "*"
+pydotplus = "*"
+drf-yasg = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

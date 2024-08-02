@@ -11,8 +11,11 @@ from products.serializers import ProductSerializer
 
 def home(request, *args, **kwargs):
     body = request.body  # byte string of json data
-    # print(body)
-    print(request.GET)  # url query params
+    print(body)  # b'{"name": "Nouman"}'
+
+    print("request.GET")  # url query params
+    print(request.GET)  # <QueryDict: {'abc': ['123']}>
+
     data = {}
     try:
         # convert string of json data to python dictionary

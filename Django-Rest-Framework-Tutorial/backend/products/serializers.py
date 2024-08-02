@@ -18,9 +18,11 @@ class ProductSerializer(serializers.ModelSerializer):
     owner = UserPublicSerializer(source="user", read_only=True)
 
     title = serializers.CharField(
-        validators=[validators.validate_title_no_hello, validators.unique_product_title]
+        validators=[validators.validate_title_no_hello,
+                    validators.unique_product_title]
     )
     body = serializers.CharField(source="content")
+
 
     class Meta:
         model = Product

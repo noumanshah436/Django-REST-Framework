@@ -1,0 +1,35 @@
+create .venv folder
+
+pipenv install
+pipenv shell
+
+django-admin startproject blob_management
+pipenv install django-import-export
+
+pipenv install djangorestframework Pillow PyJWT  django-cors-headers drf-yasg
+pipenv install django-extensions graphviz pygraphviz pydotplus
+
+sudo apt-get install graphviz graphviz-dev
+
+Make sure Graphviz is correctly installed and accessible. You can test this by running:
+dot -V
+
+
+python3 manage.py graph_models -a -g -o reactdj_models.png
+
+
+************************************
+
+
+python manage.py createsuperuser
+
+Username : admin
+Email address: admin@gmail.com
+Password: admin
+
+
+username: nouman
+pass: staff@123
+
+************************************
+

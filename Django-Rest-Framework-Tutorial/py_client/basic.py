@@ -22,19 +22,19 @@ import requests
 # my_data = {"name": "Nouman"}
 # get_response = requests.get(endpoint, params={"abc": 123}, json=my_data)
 
-# endpoint = "http://localhost:8000/api/model_instance_to_dic"
-# get_response = requests.get(endpoint)
+endpoint = "http://localhost:8000/api/model_instance_to_dic"
+get_response = requests.get(endpoint)
 
 # ****************************************************************
 
-endpoint = "http://localhost:8000/api/"
-my_data = {"title": "Abc123", "content": "Hello world", "price": "abc134"}
-get_response = requests.post(endpoint, json=my_data)  # HTTP Request
+# endpoint = "http://localhost:8000/api/"
+# my_data = {"title": "Abc123", "content": "Hello world", "price": "abc134"}
+# get_response = requests.post(endpoint, json=my_data)  # HTTP Request
 
 # print(get_response.headers)
 # print(get_response.text) # print raw text response
 # print(get_response.status_code)
 
-print(get_response.text)
-# print(get_response.json())  # return a proper python dictionary
+# print(get_response.text)
+print(get_response.json())  # return a proper python dictionary
 # print(get_response.status_code)

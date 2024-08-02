@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from rest_framework.response import Response
 from .models import Student
 from .serializers import StudentSerializer
@@ -50,3 +50,8 @@ class SudentAPI(APIView):
         stu.delete()
         res = {"Message": "Data Deleted Successfully"}
         return Response(res, status=status.HTTP_200_OK)
+
+
+# APIView allows developers to define custom behavior for different HTTP methods (GET, POST, PUT, DELETE, etc.), providing more flexibility compared to generic views.
+
+# APIView in Django REST Framework (DRF) is used to create API endpoints with detailed control over the request handling process.

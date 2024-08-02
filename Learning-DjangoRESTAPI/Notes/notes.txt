@@ -1,0 +1,37 @@
+
+Here are the method handlers and their corresponding actions:
+
+### Method Handlers in Django
+
+1. **GET**
+   - **Handler Method**: `get()`
+   - **Action**: Retrieve and display data
+
+2. **POST**
+   - **Handler Method**: `post()`
+   - **Action**: Create or update data
+
+3. **PUT**
+   - **Handler Method**: `put()`
+   - **Action**: Update existing data
+
+4. **DELETE**
+   - **Handler Method**: `delete()`
+   - **Action**: Delete data
+
+5. **PATCH**
+   - **Handler Method**: `patch()`
+   - **Action**: Partially update data
+
+6. **HEAD**
+   - **Handler Method**: `head()`
+   - **Action**: Retrieve metadata about the data
+
+7. **OPTIONS**
+   - **Handler Method**: `options()`
+   - **Action**: Retrieve supported HTTP methods
+
+8. **TRACE**
+   - **Handler Method**: `trace()`
+   - **Action**: Echo the received request
+

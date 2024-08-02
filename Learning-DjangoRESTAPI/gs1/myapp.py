@@ -5,7 +5,7 @@ This Portion of code is not related to any django or django rest api framework. 
 
 import requests
 
-URL = "http://127.0.0.1:8000/students/"
+URL = "http://127.0.0.1:8000/stuinfo/"
 
 r = requests.get(url=URL)
 

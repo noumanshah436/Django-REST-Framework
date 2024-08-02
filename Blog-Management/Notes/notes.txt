@@ -1,0 +1,8 @@
+https://backendfolks.medium.com/
+
+
+for swagger:
+
+https://www.django-rest-framework.org/topics/documenting-your-api/
+
+https://episyche.com/blog/how-to-create-django-api-documentation-using-swagger

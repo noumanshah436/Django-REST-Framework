@@ -184,3 +184,14 @@ http PUT http://127.0.0.1:8000/studentapi/1/ name=Nomi roll=109 city=Lahore 'Aut
 ```sh
 http DELETE http://127.0.0.1:8000/studentapi/1/ 'Authorization:Token 0edd5cde658fcd1420ca61bc1d2baf8ca2a6428d'
 ```
+
+**************************************************
+
+we can change the keyword 'Token' we are passing with the request by overriding the TokenAuthentication class:
+
+from rest_framework.authentication import TokenAuthentication as BaseTokenAuth
+from rest_framework.authtoken.models import Token
+
+
+class TokenAuthentication(BaseTokenAuth):
+    keyword = 'Token'
