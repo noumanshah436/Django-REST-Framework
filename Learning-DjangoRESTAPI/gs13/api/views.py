@@ -18,6 +18,9 @@ from rest_framework.mixins import (
 # This class extends REST framework's APIView class, adding commonly required behavior for standard list and detail views.
 # Each of the concrete generic views provided is built by combining GenericAPIView, with one or more mixin classes.
 
+# Why generic API views?
+# generic API views are used to simplify the process of creating views that handle common patterns for CRUD operations (Create, Retrieve, Update, Delete) without writing a lot of repetitive code.
+
 # more on GenericAPIView
 
 # https://www.django-rest-framework.org/api-guide/generic-views/#genericapiview

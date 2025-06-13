@@ -1,3 +1,14 @@
+Serialization:
+Serialization is the process of converting Python objects (e.g., model instances, dictionaries) into a format like JSON 
+or XML that can be easily transmitted over the network or stored.
+
+
+Deserialization
+Definition: Deserialization is the process of converting serialized data (e.g., JSON) back into Python objects like 
+dictionaries or Django model instances.
+
+***************************************
+
 
 Here are the method handlers and their corresponding actions:
 

@@ -5,12 +5,12 @@
 - [GS4 (CRUD API using CBV)](./gs4/api)
 - [GS5 (Validation in Serialization)](./gs5/api)
 - [GS6 (Model Serializer Class)](./gs6/api)
-- [GS7 (Model Class Serializer Class)](./gs7/api)
+- [GS7 (Configuring Fields in Serializer Class)](./gs7/api)
 - [GS8 (Model Class Serialization with Validation)](./gs8/api)
 - 
 - [GS9 (Function Based APIView)](./gs9/api)
-- [GS10 (Function based APIView)](./gs10/api)
-- [GS11 (Function based APIView in Browsable API format)](./gs11/api)
+- [GS10 (CRUD API with Function Based APIView)](./gs10/api)
+- [GS11 (More on CRUD API with Function Based APIView)](./gs11/api)
 - [GS12 (Class Based APIView)](./gs12/api)
 - 
 - [GS13 (Generic APIView and Mixins)](./gs13/api)

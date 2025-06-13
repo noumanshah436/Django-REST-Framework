@@ -8,6 +8,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
+# Deserialization
+# Deserialization is the process of converting serialized data (e.g., JSON) back into Python objects like dictionaries or
+# Django model instances.
+
+
 # Create your views here.
 @csrf_exempt
 def student_create(request):

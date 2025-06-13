@@ -17,7 +17,7 @@ class StudentSerializer(serializers.ModelSerializer):
         extra_kwargs = {"name": {"read_only": True}}
 
 
-# If we want to pass arguments to specific field, there are several ways:
+# If we want to pass arguments(like read_only) to specific field, there are several ways:
 
 # 1) specify that field in serializer
 #     name = serializers.CharField(read_only=True)

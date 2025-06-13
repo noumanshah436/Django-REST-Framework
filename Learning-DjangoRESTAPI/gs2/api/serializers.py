@@ -9,3 +9,6 @@ class StudentSerializer(serializers.Serializer):
 
     def create(self, validate_data):
         return Student.objects.create(**validate_data)
+
+
+# we need to define create method to save data

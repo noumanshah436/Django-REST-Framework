@@ -48,7 +48,7 @@ class StudentModelViewset(viewsets.ModelViewSet):
 
 # 1) normal user (only active flag is true)
 # 2) staff user or admin user (staff user flag is true)
-# 3) superu user (super user flag is true)
+# 3) super user (super user flag is true)
 
 # Only staff user and admin user can login to django admin panel
 

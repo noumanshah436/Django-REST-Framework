@@ -5,5 +5,5 @@ from api.views import hello_world
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('studentapi/', hello_world),
+    path('hello/', hello_world),
 ]

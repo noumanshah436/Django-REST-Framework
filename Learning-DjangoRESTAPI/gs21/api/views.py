@@ -53,6 +53,13 @@ class StudentModelViewset(viewsets.ModelViewSet):
 
 # ************************************
 
+
+# permission_classes = [AllowAny]            # Have all permissions (default)
+# permission_classes = [IsAuthenticated]     # means that only authenticated user can do anything
+# permission_classes = [IsAdminUser]         # For in use only for those User whose IsStaff = True (admins)
+
+# ************************************
+
 # IsAuthenticatedOrReadOnly permission:
 
 # The IsAuthenticatedOrReadOnly will allow authenticated users to perform any request.

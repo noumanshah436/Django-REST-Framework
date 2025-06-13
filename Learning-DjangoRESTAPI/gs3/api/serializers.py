@@ -24,4 +24,4 @@ class StudentSerializer(serializers.Serializer):
 # instance ->  old data stored in database
 # validated_data -> new data for updation
 
-# we need to define create and update methods to save or update
+# we need to define create and update methods to save or update respectively

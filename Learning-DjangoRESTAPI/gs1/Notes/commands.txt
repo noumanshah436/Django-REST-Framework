@@ -1,0 +1,36 @@
+$ python manage.py shell
+
+Python 3.12.3 (main, Jul 13 2024, 02:24:52) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+
+>>> from api.models import Student
+>>> from api.serializers import StudentSerializer
+
+>>> Student.objects.get(id=1)
+<Student: Student object (1)>
+
+************************
+
+# Sample Python object (e.g., from a database query):
+>>> student_data = {
+    "id": 1,
+    "name": "John Doe",
+    "roll": 101,
+    "city": "New York"
+}
+
+# Create the serializer instance for serialization:
+>>> serializer = StudentSerializer(student_data)
+
+
+# Access serialized data:
+
+>>> print(serializer.data)
+{'id': 1, 'name': 'John Doe', 'roll': 101, 'city': 'New York'}
+
+>>> print(type(serializer.data))
+<class 'rest_framework.utils.serializer_helpers.ReturnDict'>
+
+
+************************

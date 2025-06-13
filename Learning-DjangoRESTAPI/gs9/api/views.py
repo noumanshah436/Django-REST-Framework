@@ -2,6 +2,11 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+
+# Open this from browser to get interactive rest UI:
+# http://localhost:8000/hello/
+
+
 # Create your views here.
 # @api_view()
 # def hello_world(request):
@@ -28,7 +33,8 @@ def hello_world(request):
         return Response({"Message": "This is POST request", "data": request.data})
 
 
-# http://localhost:8000/studentapi/
+
+# http://localhost:8000/hello/
 
 # Pass this json data as content for POST request
 # {"name": "Ohit", "roll": 16, "city": "Ranchi"}
